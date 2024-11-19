@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  a,
+  img,
+  button {
+    @apply block;
+  }
+
+  input {
+    @apply block
+    outline-none
+    bg-transparent
+    w-full;
+  }
+
+  input[type='password'] {
+    @apply tracking-[5px];
+  }
+
+  input[type='password']::placeholder {
+    @apply tracking-normal;
+  }
+
+  body {
+    @apply bg-light-background 
+    dark:bg-dark-background 
+    text-light-onBackground
+    dark:text-dark-onBackground;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-2
+    h-2
+    rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-transparent
+    rounded-full;
+  }
+
+  *:hover::-webkit-scrollbar-thumb {
+    @apply bg-light-onBackground/15
+    dark:bg-dark-onBackground/15;
+  }
+}
