@@ -6,7 +6,7 @@ const TextField = ({classes = '',helperText,label,name,placeholder = '',fieldCla
   return (
     <div className={`text-field-wrapper ${classes}`}>
         <label htmlFor={name} className='label-text'>{label}</label>
-        <input className={`text-field ${fieldClasses}`} id={name} placeholder={placeholder} {...rest} />
+        <input className={`text-field ${fieldClasses}`} id={name} name={name} placeholder={placeholder} {...rest} />
         {helperText && <p className="helper-text">{helperText}</p>}
     </div>
   )

@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer base {
+
   a,
   img,
   button {
@@ -10,10 +11,7 @@
   }
 
   input {
-    @apply block
-    outline-none
-    bg-transparent
-    w-full;
+    @apply block outline-none bg-transparent w-full;
   }
 
   input[type='password'] {
@@ -25,25 +23,115 @@
   }
 
   body {
-    @apply bg-light-background 
-    dark:bg-dark-background 
-    text-light-onBackground
-    dark:text-dark-onBackground;
+    @apply bg-light-background dark:bg-dark-background text-light-onBackground dark:text-dark-onBackground;
   }
 
   ::-webkit-scrollbar {
-    @apply w-2
-    h-2
-    rounded-full;
+    @apply w-2 h-2 rounded-full;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-transparent
-    rounded-full;
+    @apply bg-transparent rounded-full;
   }
 
   *:hover::-webkit-scrollbar-thumb {
-    @apply bg-light-onBackground/15
-    dark:bg-dark-onBackground/15;
+    @apply bg-light-onBackground/15 dark:bg-dark-onBackground/15;
+  }
+}
+
+
+@layer components {
+  .text-field-wrapper {
+    @apply relative;
+  }
+
+  .text-field {
+    @apply ring-1 ring-inset ring-light-outline dark:ring-dark-outline bg-inherit text-light-onSurface caret-light-primary dark:caret-dark-primary h-14 px-4 rounded-extraSmall transition-shadow duration-short3 ease-linear hover:ring-light-onSurface hover:dark:ring-dark-onSurface focus:ring-2 focus:ring-light-primary focus:dark:ring-dark-primary;
+  }
+
+  .text-field::placeholder {
+    @apply opacity-0 transition-opacity
+  }
+
+  .text-field:focus:placeholder {
+    @apply opacity-100;
+  }
+
+  .label-text {
+    @apply absolute text-labelLarge top-[18px] left-2 text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant bg-light-background dark:bg-dark-background px-2 origin-[center-left] pointer-events-none select-none duration-short4 ease-standard;
+  }
+
+  .text-field-wrapper:hover .label-text {
+    @apply text-light-onSurface dark:text-dark-onSurface;
+  }
+
+  .text-field-wrapper:focus-within .label-text,
+  .text-field-wrapper:has(.text-field:not(:placeholder-shown)) .label-text {
+    @apply translate-x-0.5 -translate-y-7 scale-[0.85];
+  }
+
+  .text-field-wrapper:focus-within .label-text {
+    @apply text-light-primary dark:text-dark-primary;
+  }
+
+  .text-field-wrapper .helper-text {
+    @apply text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant text-bodySmall px-4 pt-1 ;
+  }
+
+  .btn {
+    @apply h-10  flex  justify-center items-center rounded-full text-labelLarge px-4 transition-shadow duration-short3 ease-standard hover:shadow-elevation1 focus:shadow-none ;
+  }
+
+  .btn.filled.primary {
+    --state-layer-bg:theme('colors.light.onPrimary');
+    @apply bg-light-primary dark:bg-dark-primary text-light-onPrimary dark:text-dark-onPrimary ;
+  }
+  @media (prefers-color-scheme:dark) {
+    .btn.filled.primary {
+      --state-layer-bg:theme('colors.light.onPrimary');
+    }
+  }
+
+  .btn.filled:disabled {
+    @apply bg-light-onSurface/[0.12] dark:bg-dark-onSurface/[0.12] text-light-onSurface/[0.38] 
+    dark:text-dark-onSurface/[0.38] pointer-events-none;
+  }
+
+  :has(> .state-layer) {
+    @apply relative overflow-hidden isolate;
+  }
+  .state-layer {
+    @apply absolute inset-0 bg-[--state-layer-bg]
+    opacity-0 transition-opacity duration-short3 ease-standard pointer-events-none select-none -z-10;
+  }
+
+  :has(>, .state-layer):hover > .state-layer {
+    @apply opacity-[0.08];
+  }
+
+  :has(>,.state-layer):where(:focus,:focus-visible,:focus-within) > .state-layer {
+    @apply opacity-[0.1];
+  }
+
+  .link {
+    @apply transition-colors duration-short3 ease-standard hover:text-light-primary hover:dark:text-dark-primary hover:underline;
+  }
+
+  .circular-progress {
+    @apply border-4 border-current  dark:border-current border-r-transparent  dark:border-r-transparent w-12 h-12 rounded-full animate-spin ;
+  }
+
+  .circular-progress.small {
+    @apply border-[3px] w-5 h-5;
+  }
+}
+
+@layer utilities {
+  .img-box {
+    @apply bg-light-surfaceContainerHighest dark:bg-dark-surfaceContainerHighest overflow-hidden;
+  }
+
+  .img-cover {
+    @apply w-full h-full object-cover;
   }
 }
