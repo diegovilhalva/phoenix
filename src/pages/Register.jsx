@@ -5,6 +5,7 @@ import TextField from "../components/TextField"
 import Button from "../components/Button"
 import CircularProgress from "../components/Progress"
 import { useEffect } from "react"
+import { useSnackbar } from "../hooks/useSnackbar"
 
 
 const Register = () => {
@@ -12,11 +13,13 @@ const Register = () => {
     const error = useActionData()
 
     
-
+    const {showSnackbar} = useSnackbar()
     const navigation = useNavigation()
     useEffect(() => {
+        if(error?.message){
+            showSnackbar({message:error.message,type:'error'})
+        }
 
-        
     },[error])
 
     return (
@@ -30,7 +33,7 @@ const Register = () => {
                         <img src={logoDark} alt="phoenix logo" width={133} height={24} className="hidden dark:block" />
                     </Link>
                     <div className="flex flex-col gap-2 max-w-[480px] w-full mx-auto">
-                        <h2 className="text-displaySmall font-semibold text-light-onBackground text-center">Create an account</h2>
+                        <h2 className="text-displaySmall font-semibold text-light-onBackground  dark:text-dark-onBackground text-center">Create an account</h2>
                         <p className="text-bodyLarge text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant mt-1 mb-5 text-center px-2">
                             Register today and gain access to powerful tools that wil supercharge your ideas
                         </p>
