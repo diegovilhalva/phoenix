@@ -1,8 +1,27 @@
-
+import PageTitle from "./components/PageTitle"
+import TopAppBar from "./components/TopAppBar"
 
 const App = () => {
   return (
-    <div>App</div>
+    <>
+    <PageTitle title="Phoenix - chat to supercharge your ideas" />
+    <div className="">
+      <div className="">
+        <TopAppBar />
+        <div className="">
+          <div className=""></div>
+        </div>
+        <div className="">
+          <p className="">
+            Phoenix may display inaccurate info, including about people, so double-ckeck its responses.
+            <a href="http://support.google.com/gemini?p=privacy_notice" target="_blank" className="">
+              Your privacy & Gemini Apps
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+    </>
   )
 }
 

@@ -1,6 +1,6 @@
 import { Form, Link, useActionData, useNavigation } from "react-router-dom"
 import {logoLight,logoDark,banner} from "../assets/assets"
-import Button from "../components/Button"
+import {Button} from "../components/Button"
 import PageTitle from "../components/PageTitle"
 import { CircularProgress, LinearProgress } from "../components/Progress"
 import TextField from "../components/TextField"
