@@ -1,26 +1,28 @@
-import { Link, Form,useNavigation,useActionData } from "react-router-dom"
+import { Link, Form, useNavigation, useActionData } from "react-router-dom"
 import PageTitle from "../components/PageTitle"
 import { logoLight, logoDark, banner } from "../assets/assets"
 import TextField from "../components/TextField"
 import Button from "../components/Button"
-import CircularProgress from "../components/Progress"
+import { CircularProgress, LinearProgress } from "../components/Progress"
 import { useEffect } from "react"
 import { useSnackbar } from "../hooks/useSnackbar"
+import { AnimatePresence } from "motion/react"
+
 
 
 const Register = () => {
 
     const error = useActionData()
 
-    
-    const {showSnackbar} = useSnackbar()
+
+    const { showSnackbar } = useSnackbar()
     const navigation = useNavigation()
     useEffect(() => {
-        if(error?.message){
-            showSnackbar({message:error.message,type:'error'})
+        if (error?.message) {
+            showSnackbar({ message: error.message, type: 'error' })
         }
 
-    },[error])
+    }, [error])
 
     return (
         <>
@@ -38,20 +40,20 @@ const Register = () => {
                             Register today and gain access to powerful tools that wil supercharge your ideas
                         </p>
                         <Form method="POST" className="grid grid-cols-1 gap-4">
-                            <TextField type="text" name="name" label='Full name' placeholder="Full name" required={true} autoFocus={true}  />
+                            <TextField type="text" name="name" label='Full name' placeholder="Full name" required={true} autoFocus={true} />
                             <TextField type="email" name="email" label="Email" placeholder="Email" />
                             <TextField type="password" name="password" label="Password" placeholder="Enter your password" required={true} />
                             <Button type="submit" disabled={navigation.state === 'submitting'}>
                                 {navigation.state === 'submitting' ? (
-                                 <CircularProgress size="small"  />
-                                ):(
-                                'Create account'
+                                    <CircularProgress size="small" />
+                                ) : (
+                                    'Create account'
                                 )}
                             </Button>
                         </Form>
                         <p className="text-bodyMedium text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant text-center mt-4 ">
                             Already have an account?
-                            <Link to="/login"  className="link inline-block ms-1 text-light-onSurface dark:text-dark-onSurface">
+                            <Link to="/login" className="link inline-block ms-1 text-light-onSurface dark:text-dark-onSurface">
                                 Sign in
                             </Link>
                         </p>
@@ -64,10 +66,18 @@ const Register = () => {
                 <div className="hidden img-box lg:block lg:relative lg:rounded-large ">
                     <img src={banner} alt="" className="img-cover" />
                     <p className="absolute bottom-10 left-12 right-12 z-10 text-displayLarge font-semibold leading-tight text-right text-light-onSurface drop-shadow-sm 2xl:text-[72px]">
-                    Chat with Phoenix to supercharge your ideas.
+                        Chat with Phoenix to supercharge your ideas.
                     </p>
                 </div>
             </div>
+            <AnimatePresence>
+
+            {navigation.state === 'loading' && (
+
+             <LinearProgress classes="absolute top-0 left-0 right-0" />
+            )}
+            </AnimatePresence>
+
         </>
     )
 }
