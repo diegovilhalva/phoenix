@@ -125,6 +125,14 @@
     @apply border-[3px] w-5 h-5;
   }
 
+  .linear-progress {
+    @apply h-1 bg-light-secondaryContainer dark:bg-dark-secondaryContainer rounded-full mx-1 overflow-hidden origin-top;
+  }
+
+  .linear-progress .active-indicator {
+    @apply h-[inherit] bg-light-primary dark:bg-dark-primary rounded-full origin-right -translate-x-full;
+  }
+
   .snackbar {
     @apply fixed bottom-4 left-4  right-4  bg-light-inverseSurface dark:bg-dark-inverseSurface text-light-inverseOnSurface dark:text-dark-inverseOnSurface text-bodyMedium shadow-elevation3 rounded-extraSmall min-h-12 max-w-[60ch] min-w-[36ch] px-4 py-[14px]  origin-bottom z-40  sm:left-6 sm:right-auto sm:bottom-6  sm:w-max  ;
   }
