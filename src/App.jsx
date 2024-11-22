@@ -1,4 +1,5 @@
 import PageTitle from "./components/PageTitle"
+import Sidebar from "./components/Sidebar"
 import TopAppBar from "./components/TopAppBar"
 
 const App = () => {
@@ -6,6 +7,7 @@ const App = () => {
     <>
     <PageTitle title="Phoenix - chat to supercharge your ideas" />
     <div className="">
+      <Sidebar />
       <div className="">
         <TopAppBar />
         <div className="">

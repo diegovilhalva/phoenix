@@ -169,7 +169,7 @@
   }
 
   .avatar {
-     @apply aspect-square bg-light-surfaceContainerHighest dark:bg-dark-surfaceContainer min-w-[32px] max-w-[32px] overflow-hidden rounded-full;
+     @apply aspect-square bg-light-surfaceContainerHighest dark:bg-dark-surfaceContainer min-w-[32px] max-w-[32px] overflow-hidden rounded-full ;
   }
 
   .menu-wrapper {
