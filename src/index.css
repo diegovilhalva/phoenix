@@ -194,6 +194,75 @@
     }
   }
 
+  .sidebar {
+    @apply bg-light-surfaceContainerLow dark:bg-dark-surfaceContainerLow text-light-onSurface 
+    dark:text-dark-onSurface fixed top-0 left-0 h-dvh w-0 max-w-[80vw] rounded-e-large shadow-elevation1 overflow-hidden transition-[width] ease-emphasized z-40 
+    sm:max-w-[320px]
+    lg:static
+    lg:opacity-100
+    lg:visible
+    lg:w-full
+    lg:shadow-none
+    lg:rounded-none;
+  }
+
+  .sidebar.active {
+    @apply w-[80vw]  duration-medium2 ease-standardDecelerate 
+    sm:w-[320px];
+  }
+
+  .sidebar-inner {
+    @apply h-full grid grid-rows-[max-content,max-content,1fr,max-content] grid-cols-1 px-3 opacity-0 transition-opacity duration-medium2 lg:opacity-100;
+  }
+
+  .sidebar.active .sidebar-inner  {
+    @apply opacity-100 delay-short2;
+  }
+
+  .overlay{
+    @apply fixed top-0 left-0 w-full h-dvh z-30 bg-transparent invisible transition-colors  lg:hidden;
+  }
+
+  .overlay.active {
+    @apply bg-black/40 visible;
+  }
+
+  .extended-fab {
+    --state-layer-bg-:theme('colors.dark.onPrimaryContainer');
+    @apply bg-light-primaryContainer dark:bg-dark-primaryContainer text-light-onPrimaryContainer 
+    dark:text-dark-onPrimaryContainer text-labelLarge max-w-max flex  items-center gap-2 h-[56px] ps-3 pe-4 rounded-large shadow-elevation1 transition-shadow duration-short3 ease-standard hover:shadow-elevation2 focus:shadow-elevation1 ;
+  }
+  @media(prefers-color-scheme:dark){
+    .extended-fab {
+      --state-layer-bg:theme('colors.dark.onPrimary');
+    }
+    .extended-fab[disabled]{
+       @apply bg-light-onSurface/[0.12] dark:bg-dark-onSurface/[0.12] text-light-onSurface/[0.38] 
+       dark:text-dark-onSurface/[0.38] shadow-none pointer-events-none;
+    }
+  }
+
+  .nav-link {
+    --state-layer-bg: theme('colors.light.onSurfaceVariant');
+    @apply flex items-center gap-3 text-labelLarge text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant h-9 rounded-full ps-4 pe-10;
+  }
+
+  .nav-link.active {
+    --state-layer-bg:theme('colors.light.onSecondaryContainer');
+    @apply bg-light-secondaryContainer dark:bg-dark-secondaryContainer text-light-onSecondaryContainer
+    dark:text-dark-onSecondaryContainer ;
+  }
+
+  @media (prefers-color-scheme:dark) {
+    .nav-link {
+      --state-layer-bg: theme('colors.dark.onSurfaceVariant');
+    }
+    .nav-link.active {
+      --state-layer-bg:theme('colors.light.onSecondaryContainer');
+    }
+  }
+
+
 }
 
 @layer utilities {
@@ -210,5 +279,8 @@
     @apply w-[1em] min-w-[1em] h-[1em] min-h-[1em] overflow-hidden;
   }
 
+  .icon-small {
+    @apply text-[18px];
+  }
 
 }

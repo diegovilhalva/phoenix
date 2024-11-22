@@ -9,7 +9,8 @@ import { AnimatePresence } from 'motion/react'
 import { useToggle } from '../hooks/useToggle'
 import logout from '../utils/logout'
 import Logo from './Logo'
-const TopAppBar = () => {
+import PropTypes from 'prop-types'
+const TopAppBar = ({toggleSidebar}) => {
 
     const navigation = useNavigation()
     const navigate = useNavigate()
@@ -22,7 +23,7 @@ const TopAppBar = () => {
     return (
         <header className='relative flex justify-between items-center h-16 px-4 '>
             <div className="flex items-center gap-1">
-                <IconBtn icon="menu" title="Menu" classes='lg:hidden'  />
+                <IconBtn icon="menu" title="Menu" classes='lg:hidden' onClick={toggleSidebar}  />
                 <Logo classes='lg:hidden' />
                
             </div>
@@ -41,4 +42,8 @@ const TopAppBar = () => {
     )
 }   
 
+
+TopAppBar.propTypes = {
+    toggleSidebar:PropTypes.func
+}
 export default TopAppBar
