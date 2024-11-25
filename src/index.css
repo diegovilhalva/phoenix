@@ -262,6 +262,28 @@
     }
   }
 
+  .prompt-field-container{
+    --state-layer-bg: theme('colors.light.onSurfaceVariant');
+
+    @apply bg-light-surfaceContainer dark:bg-dark-surfaceContainer min-h-16 rounded-full  flex 
+    items-end flex-wrap p-2 cursor-text;
+  }
+
+  @media(prefers-color-scheme:dark){
+    .prompt-field-container {
+      --state-layer-bg:theme('colors.dark.onSurfaceVariant');
+    }
+
+  }
+
+  .prompt-field{
+    @apply text-light-onSurface dark:text-dark-onSurface text-bodyLarge relative outline-none grow mx-4 py-3 max-h-[230px] overflow-y-auto whitespace-pre-wrap 
+    
+    after:content-[attr(data-placeholder)] after:text-light-onSurfaceVariant/90 after:dark:text-dark-onSurfaceVariant/90 after:absolute after:left-0 after:top-1/2 after:-translate-y-1/2 after:pointer-events-none ;
+  }
+
+
+
 
 }
 
