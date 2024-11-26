@@ -19,7 +19,6 @@ const App = () => {
             <div className="max-w-[840px] w-full mx-auto grow">
               <Greetings />
             </div>
-          </div>
           <div className="bg-light-background dark:bg-dark-background ">
             <div className="max-w-[870px] px-5 w-full  mx-auto">
               <PromptField />
@@ -30,6 +29,7 @@ const App = () => {
                 </a>
               </motion.p>
             </div>
+          </div>
           </div>
         </div>
       </div>

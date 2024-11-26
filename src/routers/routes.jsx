@@ -14,13 +14,15 @@ import resetPassword from "./actions/resetPassword"
 import resetLinkLoader from "./loaders/resetLoader"
 import resetPasswordLoader from "./loaders/resetPasswordLoader"
 import appLoader from "./loaders/appLoader"
+import appAction from "./actions/appAction"
 
 
 const router  = createBrowserRouter([
     {
         path:'/',
         element:<App />,
-        loader:appLoader
+        loader:appLoader,
+        action:appAction
     },
     {
         path:'/register',

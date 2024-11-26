@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.21.0",
     "appwrite": "^16.0.2",
     "motion": "^11.11.17",
     "prop-types": "^15.8.1",
