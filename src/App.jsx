@@ -5,8 +5,11 @@ import TopAppBar from "./components/TopAppBar"
 import { useToggle } from "./hooks/useToggle"
 import Greetings from "./pages/Greetings"
 import PromptField from "./components/PromptField"
+import { Outlet, useParams } from "react-router-dom"
 
 const App = () => {
+
+  const params = useParams()
   const [isSidebarOpen, toggleSidebar] = useToggle()
   return (
     <>
@@ -17,8 +20,14 @@ const App = () => {
           <TopAppBar toggleSidebar={toggleSidebar} />
           <div className="px-5 pb-5 flex flex-col overflow-y-auto">
             <div className="max-w-[840px] w-full mx-auto grow">
-              <Greetings />
+              {params.conversationId ? (
+                <Outlet />
+              ) : (
+
+                <Greetings />
+              )}
             </div>
+          </div>
           <div className="bg-light-background dark:bg-dark-background ">
             <div className="max-w-[870px] px-5 w-full  mx-auto">
               <PromptField />
@@ -29,7 +38,6 @@ const App = () => {
                 </a>
               </motion.p>
             </div>
-          </div>
           </div>
         </div>
       </div>

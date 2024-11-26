@@ -1,4 +1,4 @@
-import  {createBrowserRouter} from "react-router-dom"
+import { createBrowserRouter } from "react-router-dom"
 
 import App from "../App"
 import Register from "../pages/Register"
@@ -15,38 +15,47 @@ import resetLinkLoader from "./loaders/resetLoader"
 import resetPasswordLoader from "./loaders/resetPasswordLoader"
 import appLoader from "./loaders/appLoader"
 import appAction from "./actions/appAction"
+import Conversation from "../pages/Conversation"
+import conversationLoader from "./loaders/conversationLoader"
 
 
-const router  = createBrowserRouter([
+const router = createBrowserRouter([
     {
-        path:'/',
-        element:<App />,
-        loader:appLoader,
-        action:appAction
+        path: '/',
+        element: <App />,
+        loader: appLoader,
+        action: appAction,
+        children: [
+            {
+                path: '/:conversationId',
+                element: <Conversation />,
+                loader:conversationLoader
+            }
+        ]
     },
     {
-        path:'/register',
-        element:<Register />,
-        loader:registerLoader,
-        action:registerAction
+        path: '/register',
+        element: <Register />,
+        loader: registerLoader,
+        action: registerAction
     },
     {
-        path:'/login',
-        element:<Login />,
-        loader:loginLoader,
-        action:loginAction
+        path: '/login',
+        element: <Login />,
+        loader: loginLoader,
+        action: loginAction
     },
     {
-        path:'/reset-link',
-        element:<ResetLink />,
-        loader:resetLinkLoader,
-        action:resetLinkAction
+        path: '/reset-link',
+        element: <ResetLink />,
+        loader: resetLinkLoader,
+        action: resetLinkAction
     },
     {
-        path:'/reset-password',
-        element:<ResetPassword />,
-        loader:resetPasswordLoader,
-        action:resetPassword
+        path: '/reset-password',
+        element: <ResetPassword />,
+        loader: resetPasswordLoader,
+        action: resetPassword
     }
 ])
 
