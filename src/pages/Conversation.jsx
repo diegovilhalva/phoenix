@@ -2,6 +2,7 @@ import { motion } from "motion/react"
 import PageTitle from "../components/PageTitle"
 import { useLoaderData } from "react-router-dom"
 import UserPrompt from "../components/UserPrompt"
+import AiResponse from "../components/AiResponse"
 
 
 
@@ -16,7 +17,7 @@ const Conversation = () => {
                 {chats.map((chat) => (
                     <div key={chat.$id}>
                         <UserPrompt text={chat.user_prompt} />
-                        <p>{chat.ai_response}</p>
+                        <AiResponse  aiResponse={chat.ai_response}/>
                     </div>
                 ))}
             </motion.div>
