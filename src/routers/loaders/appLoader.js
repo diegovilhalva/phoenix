@@ -24,7 +24,7 @@ const appLoader = async () => {
 
             ]
         )
-        console.log(data)
+    
     } catch (error) {
         console.log(`Error getting conversations: ${error.message}`)
     }

@@ -3,6 +3,7 @@ import { getAiResponse, getConverstionTitle } from "../../api/googleAi";
 import { account, databases } from "../../lib/appwrite";
 import generateId from "../../utils/generateId";
 
+
 const userPrompAction = async (formData) => {
     const userPrompt = formData.get('user_prompt')
 
@@ -46,6 +47,22 @@ const userPrompAction = async (formData) => {
     return redirect(`/${conversation.$id}`);
 }
 
+const conversationAction = async  (formData) => {
+    const conversationId = formData.get('conversation_id')
+    const conversationTitle = formData.get('conversation_title')
+
+    try {
+        await databases.deleteDocument(
+            import.meta.env.VITE_APPWRITE_DATABASE_ID,
+            '6745b375001ca33a019f',
+            conversationId
+        )
+
+        return {conversationTitle}
+    } catch (error) {
+        console.log(`Error in deleting conversation: ${error.message}`)
+    }
+}
 
 
 
@@ -56,6 +73,10 @@ const appAction = async ({ request }) => {
 
     if (requestType === 'user_prompt') {
         return await userPrompAction(formData)
+    }
+
+    if (requestType === 'delete_conversation') {
+        return await conversationAction(formData)
     }
 
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { IconBtn } from './Button'
-import { useNavigate, useNavigation,useLoaderData,useParams } from 'react-router-dom'
+import { useNavigate, useNavigation,useLoaderData,useParams,useSubmit } from 'react-router-dom'
 import Avatar from './Avatar'
 import Menu from './Menu'
 import MenuItem from './MenuItem'
@@ -10,13 +10,17 @@ import { useToggle } from '../hooks/useToggle'
 import logout from '../utils/logout'
 import Logo from './Logo'
 import PropTypes from 'prop-types'
+import deleteConversation from '../utils/deleteConversation'
 const TopAppBar = ({toggleSidebar}) => {
 
     const navigation = useNavigation()
     const navigate = useNavigate()
-    const {user} = useLoaderData()
+    const {user,conversation} = useLoaderData()
     
     const params = useParams()
+    console.log(params.conversationId)
+
+    const submit  = useSubmit()
 
     const [showMenu,setShowMenu] = useToggle()
 
@@ -28,7 +32,14 @@ const TopAppBar = ({toggleSidebar}) => {
                 <Logo classes='lg:hidden' />              
             </div>
             {params.conversationId  && (
-                <IconBtn icon='delete' classes='ms-auto me-1 lg:hidden' />
+                <IconBtn icon='delete' classes='ms-auto me-1 lg:hidden' onClick={() => {
+                    const {title} = conversation.documents.find(({$id}) => params.conversationId === $id)
+                    deleteConversation({
+                        id:params.conversationId,
+                        title,
+                        submit
+                    })
+                }} />
             )}
             <div className="menu-wrapper">
                 <IconBtn onClick={setShowMenu}>

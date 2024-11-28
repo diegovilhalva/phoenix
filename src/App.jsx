@@ -5,13 +5,39 @@ import TopAppBar from "./components/TopAppBar"
 import { useToggle } from "./hooks/useToggle"
 import Greetings from "./pages/Greetings"
 import PromptField from "./components/PromptField"
-import { Outlet, useParams, useNavigation } from "react-router-dom"
+import { Outlet, useParams, useNavigation, useActionData } from "react-router-dom"
+import { useSnackbar } from "./hooks/useSnackbar"
+import { useEffect, useRef } from "react"
+import { usePromptPreloader } from "./hooks/usePromptPreloader"
 
 const App = () => {
 
   const params = useParams()
   const navigation = useNavigation()
+  const actionData = useActionData()
   const [isSidebarOpen, toggleSidebar] = useToggle()
+  const {promptPreloaderValue} = usePromptPreloader()
+  const {showSnackbar} = useSnackbar()
+
+  const chatHistoryRef = useRef()
+
+  useEffect(() => {
+    const chatHistory = chatHistoryRef.current
+    if(promptPreloaderValue){
+      chatHistory.scroll({
+        top:chatHistory.scrollHeight - chatHistory.clientHeight,
+        behavior:'smooth'
+      })
+    }
+  },[chatHistoryRef,promptPreloaderValue])
+
+  useEffect(() => {
+    if(actionData?.conversationTitle){
+      showSnackbar({
+        message:`Deleted ${actionData.conversationTitle} conversation`
+      })
+    }
+  },[actionData,showSnackbar])
   const isNormalLoad = navigation.state === 'loading' && !navigation.formData
   return (
     <>
@@ -20,7 +46,7 @@ const App = () => {
         <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <div className="h-dvh grid grid-rows-[max-content,minmax(0,1fr),max-content]">
           <TopAppBar toggleSidebar={toggleSidebar} />
-          <div className="px-5 pb-5 flex flex-col overflow-y-auto">
+          <div ref={chatHistoryRef} className="px-5 pb-5 flex flex-col overflow-y-auto">
             <div className="max-w-[840px] w-full mx-auto grow">
               { isNormalLoad ?  null : params.conversationId ? (
                 <Outlet />
