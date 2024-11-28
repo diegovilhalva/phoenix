@@ -1,6 +1,6 @@
 import React from 'react'
 import { IconBtn } from './Button'
-import { useNavigate, useNavigation,useLoaderData } from 'react-router-dom'
+import { useNavigate, useNavigation,useLoaderData,useParams } from 'react-router-dom'
 import Avatar from './Avatar'
 import Menu from './Menu'
 import MenuItem from './MenuItem'
@@ -15,7 +15,8 @@ const TopAppBar = ({toggleSidebar}) => {
     const navigation = useNavigation()
     const navigate = useNavigate()
     const {user} = useLoaderData()
-    console.log(user)
+    
+    const params = useParams()
 
     const [showMenu,setShowMenu] = useToggle()
 
@@ -24,9 +25,11 @@ const TopAppBar = ({toggleSidebar}) => {
         <header className='relative flex justify-between items-center h-16 px-4 '>
             <div className="flex items-center gap-1">
                 <IconBtn icon="menu" title="Menu" classes='lg:hidden' onClick={toggleSidebar}  />
-                <Logo classes='lg:hidden' />
-               
+                <Logo classes='lg:hidden' />              
             </div>
+            {params.conversationId  && (
+                <IconBtn icon='delete' classes='ms-auto me-1 lg:hidden' />
+            )}
             <div className="menu-wrapper">
                 <IconBtn onClick={setShowMenu}>
                     <Avatar name={user.name} />
