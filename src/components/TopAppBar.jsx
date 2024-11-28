@@ -18,7 +18,7 @@ const TopAppBar = ({toggleSidebar}) => {
     const {user,conversation} = useLoaderData()
     
     const params = useParams()
-    console.log(params.conversationId)
+   
 
     const submit  = useSubmit()
 

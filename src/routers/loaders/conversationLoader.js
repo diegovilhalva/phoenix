@@ -4,7 +4,7 @@ import { account, databases } from "../../lib/appwrite";
 const conversationLoader  = async ({params}) => {
     const {conversationId} = params
     const data = {}
-    console.log(conversationId)
+    
     try {
         data.user = await account.get()
     } catch (error) {

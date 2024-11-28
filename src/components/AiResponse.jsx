@@ -78,11 +78,14 @@ const AiResponse = ({ aiResponse, children }) => {
                 <img src={iconLogo} width={32} height={32} alt="Phoenix logo" />
             </figure>
             {children}
+            {aiResponse && (
+
             <div className="markdown-content">
                 <Markdown remarkPlugins={[remarkGfm]} components={{ code }}>
                     {aiResponse}
                 </Markdown>
             </div>
+            )}
         </div>
     )
 }
