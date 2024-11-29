@@ -46,7 +46,28 @@
   }
 
   .text-field {
-    @apply ring-1 ring-inset ring-light-outline dark:ring-dark-outline bg-inherit text-light-onSurface caret-light-primary dark:caret-dark-primary h-14 px-4 rounded-extraSmall transition-shadow duration-short3 ease-linear hover:ring-light-onSurface hover:dark:ring-dark-onSurface focus:ring-2 focus:ring-light-primary focus:dark:ring-dark-primary;
+    @apply ring-1
+    ring-inset
+    ring-light-outline
+    dark:ring-dark-outline
+    bg-inherit
+    text-light-onSurface
+    dark:text-dark-onSurface
+    caret-light-primary
+    dark:caret-dark-primary
+    h-14
+    px-4
+    rounded-extraSmall
+    transition-shadow
+    duration-short3
+    ease-linear
+
+    hover:ring-light-onSurface
+    hover:dark:ring-dark-onSurface
+
+    focus:ring-2
+    focus:ring-light-primary
+    focus:dark:ring-dark-primary;
   }
 
   .text-field::placeholder {
